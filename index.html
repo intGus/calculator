@@ -5,28 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
   <title>Calculator JS</title>
 </head>
 <body>
-  <div id="screen"></div>
-  <br>
-  <div id="wrapper">
-    <button type="button" id="0">0</button>
-    <button type="button" id="1">1</button>
-    <button type="button" id="2">2</button>
-    <button type="button" id="3">3</button>
-    <button type="button" id="4">4</button>
-    <button type="button" id="5">5</button>
-    <button type="button" id="6">6</button>
-    <button type="button" id="7">7</button>
-    <button type="button" id="8">8</button>
-    <button type="button" id="9">9</button>
-    <br>
-    <button type="button" id="+">+</button>
-    <button type="button" id="-">-</button>
-    <button type="button" id="*">*</button>
-    <button type="button" id="/">/</button>
-    <button type="button" id="=">=</button>
+  <div id="calculator">
+    <div id="screen">0</div>
+    <div id="wrapper">
+      <button type="button" id="C">C</button>
+      <button type="button" id="back">&lt=</button>
+      <button type="button" id="symbol">+/-</button>
+      <button type="button" class="op" id="*">*</button>
+      <button type="button" id="7">7</button>
+      <button type="button" id="8">8</button>
+      <button type="button" id="9">9</button>
+      <button type="button" class="op" id="/">/</button>
+      <button type="button" id="4">4</button>
+      <button type="button" id="5">5</button>
+      <button type="button" id="6">6</button>
+      <button type="button" class="op" id="-">-</button>
+      <button type="button" id="1">1</button>
+      <button type="button" id="2">2</button>
+      <button type="button" id="3">3</button>
+      <button type="button" class="op" id="+">+</button>
+      <button type="button" id=".">.</button>
+      <button type="button" id="0">0</button>
+      <button type="button" class="op" id="eq">=</button>
+    </div>
   </div>
 </body>
 </html>
