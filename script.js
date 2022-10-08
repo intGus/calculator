@@ -1,4 +1,10 @@
 //javascript file
+
+function handleEvent(e) {
+  if (e.target.id == 'back' || e.key == 'Backspace') {
+    console.log('backspace')
+  }
+}
 const add = function(a, b){
   return a + b;
 };
@@ -55,8 +61,12 @@ function unselectAll() {
   }
 }
 
+const calculator = document.getElementById('calculator');
+calculator.addEventListener('click', handleEvent);
+window.addEventListener('keydown', handleEvent);
 
 const wrapper = document.getElementById('wrapper');
+
 wrapper.addEventListener('click', (event) => {
   const isButton = event.target.nodeName === 'BUTTON';
   if (!isButton) {
