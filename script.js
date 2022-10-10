@@ -1,24 +1,80 @@
 //javascript file
-
+const ops = new Set(['/','*','-','+','=','enter'])
 function handleEvent(e) {
-  if (e.target.id == 'back' || e.key == 'Backspace') {
-    console.log('backspace')
+  e = e.toLowerCase();
+  console.log(e)
+
+  if (e === 'c' || e === 'escape') {
+    (console.log('clear'))
+    reset();
+    return;
+  } else if (e =='backspace') {
+    console.log('back pressed')
+    screenUI.textContent = screenUI.textContent.slice(0, -1);
+    screen = screenUI.textContent;
+    return;
+  } else if (e =='symbol') {
+    console.log('symbol')
+    screenUI.textContent = Number(screenUI.textContent) * (-1)
+    screen = screenUI.textContent;
+    return;
+  } else if (e == '.') {
+    if (screenUI.textContent.includes('.')) {
+      return;
+    } else {
+      screen = screen + e;
+      screenUI.textContent = screen;
+    }
+  } else if (!isNaN(e)) {
+    console.log('number')
+    console.log(screenUI.textContent)
+    screen = screen + e;
+    console.log(screen)
+    screenUI.textContent = Number(screen);
+    return;
+  } else if (ops.has(e)) {
+    unselectAll();
+    opButtons[e].classList.add('selected');
+    if (e === 'enter') { e = '='}
+    if (screen === '') {
+      operator = e;
+      return; 
+    }
+    if (firstNumber === ''){
+      console.log('first number empty')
+      firstNumber = Number(screen);
+      operator = e;
+      screen = '';
+      topScreenUI.textContent = (firstNumber + operator)
+    }else{
+      secondNumber = Number(screen);
+      topScreenUI.textContent = (firstNumber + operator + secondNumber)
+      screen = operate(firstNumber, secondNumber, operator);
+      if (!isFinite(screen)){
+        reset();
+        divZero();
+        return;
+      }
+      screenUI.textContent = Number(screen.toFixed(2));
+      firstNumber = screen;
+      secondNumber = 0;
+      operator = e;
+      screen = ''
+    }
   }
-}
+};
+
 const add = function(a, b){
   return a + b;
 };
-
 const subtract = function(a, b) {
 	return a - b;
 };
-
 const multiply = function(a, b) {
 	return a * b;
 };
-
 const divide = function(a, b) {
-	return a / b;
+    return a / b;
 };
 
 const operate = function(a, b, operator){
@@ -31,13 +87,14 @@ const operate = function(a, b, operator){
       return multiply(a,b);
     case '/':
       return divide(a,b);
-    default:
-      return (a + 0);
+    default: //after equal sign start a new operation
+      console.log('default')
+      return (0 + b);
   }
-
 }
 
 let screenUI = document.getElementById('screen');
+let topScreenUI = document.getElementById('topScreen')
 let screen = '';
 let firstNumber = '';
 let secondNumber = 0
@@ -50,6 +107,7 @@ const reset = function() {
   secondNumber = 0
   operator = ''
   screenUI.textContent = '0'
+  topScreenUI.textContent = ''
   unselectAll()
 };
 
@@ -61,59 +119,17 @@ function unselectAll() {
   }
 }
 
-const calculator = document.getElementById('calculator');
-calculator.addEventListener('click', handleEvent);
-window.addEventListener('keydown', handleEvent);
-
 const wrapper = document.getElementById('wrapper');
+wrapper.addEventListener('click', function(e) {handleEvent(e.target.id);});
+window.addEventListener('keydown', function(e) {handleEvent(e.key);});
 
-wrapper.addEventListener('click', (event) => {
-  const isButton = event.target.nodeName === 'BUTTON';
-  if (!isButton) {
-    return;
-  }
-  if (event.target.id == 'C'){
-    reset();
-    return;
-  };
-
-    if (event.target.id =='back'){
-    console.log('back pressed')
-    screenUI.textContent = screenUI.textContent.slice(0, -1);
-    screen = screenUI.textContent;
-    return;
-  }
-
-  if (event.target.id == '.' && screenUI.textContent.includes('.')){
-    return;
-  };
-
-  if (event.target.classList.contains('op') ){
-    unselectAll();
-    event.target.classList.add('selected');
-    if (screen === '') {
-      console.log('screen empty')
-      operator = (event.target.id);
-      return; 
-    }
-    if (firstNumber === ''){
-      console.log('first number empty')
-      firstNumber = Number(screen);
-      operator = (event.target.id);
-      screen = '';
-    }else{
-      secondNumber = Number(screen);
-      console.log(firstNumber,secondNumber)
-      screen = operate(firstNumber, secondNumber, operator);
-      screenUI.textContent = Number(screen.toFixed(2));
-      firstNumber = '';
-      secondNumber = 0;
-      operator = '';
-    }
-  }else{
-  console.log(screenUI.textContent)
-  screen = screen + (event.target.id);
-  console.log(screen)
-  screenUI.textContent = Number(screen);
-  }
-})
+function divZero() {
+  var a = document.createElement('a');
+  var link = document.createTextNode("Click here to see result");
+  a.appendChild(link);
+  a.href = 'https://youtu.be/dQw4w9WgXcQ';
+  a.title = "click here to see result"
+  a.setAttribute('target', '_blank');
+  topScreenUI.appendChild(a);
+  console.log(a)
+}

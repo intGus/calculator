@@ -1,47 +1,79 @@
+html,
+body{
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand {
+  font-family: 'DotGothic16';
+  font-size: 12px;
+  width: 214px;
+  text-align: left;
+}
+
 #calculator {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
   border-radius: 3px;
-  height: 273px;
-  width: 230px;
-  padding: 5px;
+  height: 353px;
+  width: 250px;
+  padding: 7px;
   text-align: center;
+  margin: auto;
 }
-
-#screen {
+.screen-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: stretch;
   text-align: right;
   font-family: 'DotGothic16';
-  font-size: 20px;
-  width: 214px;
-  height: 30px;
+  font-size: 15px;
+  width: 225px;
+  height: 65px;
   border: 1px solid black;
   border-radius: 3px;
-  margin-top: 8px;
+  margin-top: 18px;
+  margin-bottom: 10px;
   margin-bottom: 4px;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding-right: 4px;
+}
+#topScreen {
+  width: 224px;
+  height: 25px;
+}
+#screen {
+  margin-top: 5px;
+  font-size: 24px;
+  width: 224px;
+  height: 40px;
 }
 
 button{
   border: 1px solid black;
   border-radius: 4px;
+  font-size: 18px;
 }
 
 #wrapper{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  height: 220px;
-  width: 220px;
+  gap: 6px;
+  height: 230px;
+  width: 230px;
   margin: auto;
 }
 
-#eq {
+#enter {
   grid-column: 3 / 5;
   grid-row: 5;
 }
@@ -58,4 +90,8 @@ button{
 .op.selected {
   background-color:rgb(170, 170, 170);
   font-weight: bold;
+}
+
+a:link {
+  text-decoration: none;
 }
