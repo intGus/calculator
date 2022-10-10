@@ -11,4 +11,4 @@ Basic calculator using Vanilla Javascript, CSS and HTML5 [__See the live Demo__]
 ## Author
 
 Inspiration from [The Odin Project](https://www.theodinproject.com/home).<br/>
-Copyright &copy; 2022 intGus
+Copyleft 2022 intGus
