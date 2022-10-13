@@ -127,9 +127,8 @@ function divZero() {
   var a = document.createElement('a');
   var link = document.createTextNode("Click here to see result");
   a.appendChild(link);
-  a.href = 'https://youtu.be/dQw4w9WgXcQ';
-  a.title = "click here to see result"
+  a.href = 'https://youtu.be/-AXetJvTfU0';
+  a.title = "click here to see result";
   a.setAttribute('target', '_blank');
   topScreenUI.appendChild(a);
-  console.log(a)
 }
